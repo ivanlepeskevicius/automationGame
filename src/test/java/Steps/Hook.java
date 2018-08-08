@@ -4,9 +4,13 @@ import Base.BaseUtil;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import org.testng.annotations.BeforeClass;
 import cucumber.runtime.Utils;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+
+import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.OutputType.BYTES;
 
@@ -18,6 +22,14 @@ public class Hook extends BaseUtil {
     public Hook(BaseUtil base) {
         this.base = base;
     }
+
+    @BeforeClass(alwaysRun = true)
+    public void setUp() {
+
+        base.Driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+    }
+
 
     @Before
     public void InitializeTest()

@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+
+
 public class LoginPage {
 
     public LoginPage(WebDriver driver) {
@@ -13,13 +15,13 @@ public class LoginPage {
     }
 
     @FindBy(how = How.ID, using = "email")
-    public WebElement txtUserName;
+    private WebElement txtUserName;
 
     @FindBy(how = How.ID, using = "passwd")
-    public WebElement txtPassword;
+    private WebElement txtPassword;
 
     @FindBy(how = How.ID, using = "SubmitLogin")
-    public WebElement btnLogin;
+    private WebElement btnLogin;
 
     public void Login(String userName, String password) {
         txtUserName.sendKeys(userName);

@@ -4,8 +4,8 @@ Feature: LoginFeature
   Scenario: Login with correct username and password
     Given I navigate to the login page
     When I enter the following for Login
-      | username                  | password  |
-      | i.lepeskevicius@gmail.com | admin123* |
+      | username                  | password   |
+      | i.lepeskevicius@gmail.com | admin1234* |
     And I click login button
     Then I should see my account page
 
