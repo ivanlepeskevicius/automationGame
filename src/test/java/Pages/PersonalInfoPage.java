@@ -1,6 +1,5 @@
 package Pages;
 
-import Steps.LoginStep;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -47,8 +46,8 @@ public class PersonalInfoPage {
     private WebElement successMsg;
 
     public String PageTitle(){
-        String title = pageTitle.getText();
-        return title;
+        String subtitle = pageTitle.getText();
+        return subtitle;
     }
 
     public void changeName() {
