@@ -4,14 +4,14 @@ Feature: Account
   Background: : Login
     Given I navigate to the login page
     When I enter the following for Login
-      | username                  | password  |
+      | username                  | password   |
       | i.lepeskevicius@gmail.com | admin1234* |
     And I click login button
     Then I should see my account page
 
   Scenario: Edit account
     Given I navigate to the personal information page
-    When I update my details
+    When I update my name
     Then I receive feedback that my account is updated
 
   Scenario: Change address

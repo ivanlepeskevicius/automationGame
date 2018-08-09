@@ -17,19 +17,11 @@ import static org.openqa.selenium.OutputType.BYTES;
 
 public class Hook extends BaseUtil {
 
-    private BaseUtil base;
+    private BaseUtil b;
 
     public Hook(BaseUtil base) {
-        this.base = base;
+        this.b = base;
     }
-
-    @BeforeClass(alwaysRun = true)
-    public void setUp() {
-
-        base.Driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-    }
-
 
     @Before
     public void InitializeTest()
@@ -37,8 +29,9 @@ public class Hook extends BaseUtil {
         System.out.println("Opening the browser : Chrome");
 
         System.setProperty("webdriver.chrome.driver","C:\\libs\\chromedriver.exe");
-        base.Driver = new ChromeDriver();
+        b.Driver = new ChromeDriver();
 
+        b.Driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     @After
@@ -47,19 +40,19 @@ public class Hook extends BaseUtil {
 
         if (scenario.isFailed()) {
 
-            scenario.write("url: " + base.Driver.getCurrentUrl());
+            scenario.write("url: " + b.Driver.getCurrentUrl());
 
-            if (base.Driver instanceof TakesScreenshot) {
-                TakesScreenshot camera = (TakesScreenshot) base.Driver;
+            if (b.Driver instanceof TakesScreenshot) {
+                TakesScreenshot camera = (TakesScreenshot) b.Driver;
                 byte[] screenshot = camera.getScreenshotAs(BYTES);
                 scenario.embed(screenshot, "image/png");
             }
 
-            scenario.write(Utils.htmlEscape(base.Driver.getPageSource()));
+            scenario.write(Utils.htmlEscape(b.Driver.getPageSource()));
 
         }
 
         System.out.println("Closing the browser : Chrome");
-        base.Driver.quit();
+        b.Driver.quit();
     }
 }

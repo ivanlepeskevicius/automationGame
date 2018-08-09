@@ -10,9 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
-    public LoginPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-    }
+    public LoginPage(WebDriver driver) { PageFactory.initElements(driver, this); }
 
     @FindBy(how = How.ID, using = "email")
     private WebElement txtUserName;
@@ -29,6 +27,6 @@ public class LoginPage {
     }
 
     public void ClickLogin() {
-        btnLogin.submit();
+        btnLogin.click();
     }
 }

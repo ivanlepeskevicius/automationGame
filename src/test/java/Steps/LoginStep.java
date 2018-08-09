@@ -19,19 +19,19 @@ import java.util.List;
 
 public class LoginStep extends BaseUtil{
 
-    private  BaseUtil base;
+    private  BaseUtil b;
 
     public LoginStep(BaseUtil base) {
-        this.base = base;
+        this.b = base;
     }
 
     @Given("^I navigate to the login page$")
     public void iNavigateToTheLoginPage(){
 
         System.out.println("Navigate Login Page");
-        base.Driver.get("http://automationpractice.com/");
+        b.Driver.get("http://automationpractice.com/");
 
-        NavigationBasics nav = new NavigationBasics (base.Driver);
+        NavigationBasics nav = new NavigationBasics (b.Driver);
         nav.LoginPage();
 
     }
@@ -43,7 +43,7 @@ public class LoginStep extends BaseUtil{
         //Store all the users
         users = table.asList(User.class);
 
-        LoginPage page = new LoginPage(base.Driver);
+        LoginPage page = new LoginPage(b.Driver);
 
         for (User user: users){
             page.Login(user.username, user.password);
@@ -54,7 +54,7 @@ public class LoginStep extends BaseUtil{
     @And("^I click login button$")
     public void iClickLoginButton(){
 
-        LoginPage page = new LoginPage(base.Driver);
+        LoginPage page = new LoginPage(b.Driver);
         page.ClickLogin();
 
     }
@@ -65,7 +65,7 @@ public class LoginStep extends BaseUtil{
         System.out.println("UserName is : " + userName);
         System.out.println("Password is : " + password);
 
-        LoginPage page = new LoginPage(base.Driver);
+        LoginPage page = new LoginPage(b.Driver);
         page.Login(userName, password);
 
     }
@@ -73,18 +73,18 @@ public class LoginStep extends BaseUtil{
     @Then("^I should see my account page$")
     public void iShouldSeeMyAccountPage(){
 
-        AccountPage page = new AccountPage(base.Driver);
-        assertEquals(page.pageTitle(), "MY ACCOUNT");
+        AccountPage page = new AccountPage(b.Driver);
+        assertEquals(page.PageTitle(), "MY ACCOUNT");
 
     }
 
     @Then("^I should see an error message$")
     public void iShouldSeeAnErrorMessage(){
 
-        WebDriverWait wait = new WebDriverWait(base.Driver, 10);
+        WebDriverWait wait = new WebDriverWait(b.Driver, 10);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("alert-danger")));
 
-        assertTrue(base.Driver.findElement(By.className("alert-danger")).isDisplayed());
+        assertTrue(b.Driver.findElement(By.className("alert-danger")).isDisplayed());
     }
 
 

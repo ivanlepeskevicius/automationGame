@@ -1,28 +1,43 @@
 package Steps;
 
+import Base.BaseUtil;
+import Pages.AccountPage;
+import Pages.PersonalInfoPage;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.openqa.selenium.By;
 
-public class AccountStep {
-    @Given("^I navigate to the personal information page$")
-    public void iNavigateToThePersonalInformationPage() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+import static org.testng.Assert.assertTrue;
+
+public class AccountStep extends BaseUtil{
+
+    private BaseUtil b;
+
+    public AccountStep(BaseUtil base) {
+        this.b = base;
     }
 
-    @When("^I update my details$")
-    public void iUpdateMyDetails() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+    @Given("^I navigate to the personal information page$")
+    public void iNavigateToThePersonalInformationPage() {
+
+        AccountPage page = new AccountPage(b.Driver);
+        page.PersonalInformationPage();
+    }
+
+    @When("^I update my name")
+    public void iUpdateMyName() {
+        PersonalInfoPage page = new PersonalInfoPage(b.Driver);
+        page.changeName();
+        page.submitChanges();
     }
 
     @Then("^I receive feedback that my account is updated$")
     public void iReceiveFeedbackThatMyAccountIsUpdated() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+
+        assertTrue(b.Driver.findElement(By.className("alert-success")).isDisplayed());
     }
 
     @When("^I change my street name$")
